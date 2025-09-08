@@ -1,0 +1,62 @@
+/**
+ * 全局常量、方法封装模块
+ * 通过原型挂载到Vue属性
+ * 通过 this.Global 调用
+ * 生产环境打包
+ */
+
+// 后台管理系统服务器地址
+// export const baseUrl = 'http://192.168.1.160:8001/centerApiadmin' //测试地址
+//  export const baseUrl = 'http://192.168.1.200:7077' //张嘉贵
+
+
+// 配置路径
+let protocol = window.location.protocol
+
+let hostName = window.location.hostname
+
+let port = window.location.port
+// 生产环境打包
+let baseRoot = 'apiadmin'
+
+export const baseUrl = `${protocol}//${hostName}:${port}/${baseRoot}`
+
+export const baseTaskUrl = `${protocol}//${hostName}:${port}/centerScheduleApi`
+
+export const switchUrl = `${protocol}//${hostName}:${port}/death/color/switch.txt`
+
+export const voiceUrl = `${protocol}//${hostName}:${port}/voiceApi`
+
+
+export const mainNavMain = [
+    {
+      name: '业务管理',
+      id: 0
+    },
+    {
+      name: "系统管理",
+      id: 1
+    },
+    {
+      name: "性能管理",
+      id: 10130
+    },
+    // "移客通",
+    // "微小号",
+    // "沃号通",
+    // "联通挪车",
+    // "系统管理",
+    // "性能管理",
+  ]
+
+
+
+
+// 系统数据备份还原服务器地址
+export const backupBaseUrl = 'http://localhost:8002'
+
+export default {
+    baseUrl,
+    backupBaseUrl,
+    mainNavMain
+}

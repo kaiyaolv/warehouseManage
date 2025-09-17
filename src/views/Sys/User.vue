@@ -101,7 +101,7 @@
 				<el-form-item label="密码" prop="password" v-if="orderPasswords==true">
 					<el-row>
 						<el-col :span="18">
-							<el-input disabled placeholder="密码" v-model="dataForm.password" auto-complete="new-password"
+							<el-input placeholder="密码" v-model="dataForm.password" auto-complete="new-password"
 								style="margin-left: 6px;"></el-input>
 						</el-col>
 						<el-col :span="2" class="icon-list__tips" style="display: flex; align-items: center;">

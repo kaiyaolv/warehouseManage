@@ -192,10 +192,18 @@
                 class="table-item"
                 :height="300"
               >
+                <el-table-column header-align="center" align="center" :width="calccolumnwidth">
+                  <template slot="header" slot-scope="scope">
+                    总数：{{ tableData.length }}
+                  </template>
+                  <template slot-scope="scope">
+                    {{ scope.$index + 1 }}
+                  </template>
+                </el-table-column>
                 <el-table-column prop="uniqueCode" label="溯源码" header-align="center" align="center"></el-table-column>
                 <el-table-column label="操作" width="80" header-align="center" align="center">
                   <template slot-scope="scope">
-                    <el-button type="primary" @click="handleDelete(scope.row)" :size="size">删除</el-button>
+                    <el-button type="primary" @click="handlePutDelete(scope.row)" :size="size">删除</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -268,10 +276,18 @@
                 class="table-item"
                 :height="300"
               >
+                <el-table-column header-align="center" align="center" :width="calccolumnwidth">
+                  <template slot="header" slot-scope="scope">
+                    总数：{{ tableData.length }}
+                  </template>
+                  <template slot-scope="scope">
+                    {{ scope.$index + 1 }}
+                  </template>
+                </el-table-column>
                 <el-table-column prop="uniqueCode" label="溯源码" header-align="center" align="center"></el-table-column>
                 <el-table-column label="操作" width="80" header-align="center" align="center">
                   <template slot-scope="scope">
-                    <el-button type="primary" @click="handleDelete(scope.row)" :size="size">删除</el-button>
+                    <el-button type="primary" @click="handlePutDelete(scope.row)" :size="size">删除</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -406,7 +422,12 @@ export default {
   	...mapState({
   	  collapse: state => state.app.collapse,
   	  operationWidth: state=> state.app.operationWidth
-  	})
+  	}),
+    calccolumnwidth() {
+      const baseWidth = 80//基础宽度
+      const numberWidth= `${this.tableData.length}`.length * 8// 数字部分宽度估算
+      return baseWidth + numberWidth;
+    }
   },
   // 监控data中的数据变化
   watch: {
@@ -588,7 +609,7 @@ export default {
         });
       }
     },
-    handleDelete(row) {
+    handlePutDelete(row) {
       this.tableData = this.tableData.filter(item => item.uniqueCode !== row.uniqueCode);
     },
   },

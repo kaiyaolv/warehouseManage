@@ -55,9 +55,9 @@
       <el-table-column prop="lastLoginTime" header-align="center" align="center" label="上次登录时间"
         :show-overflow-tooltip="true" :formatter='dateFormat'>
       </el-table-column>
-      <el-table-column prop="numberDesensitization" header-align="center" align="center" label="是否脱敏" :show-overflow-tooltip="true"
+      <!-- <el-table-column prop="numberDesensitization" header-align="center" align="center" label="是否脱敏" :show-overflow-tooltip="true"
         :formatter="formatStatus">
-      </el-table-column>
+      </el-table-column> -->
 			<el-table-column prop="status" header-align="center" align="center" label="状态" :show-overflow-tooltip="true"
         :formatter="(row, col, val)=>{return val == 1?'正常':'禁用'}">
       </el-table-column>
@@ -100,13 +100,19 @@
 				</el-form-item>
 				<el-form-item label="密码" prop="password" v-if="orderPasswords==true">
 					<el-row>
-						<el-col :span="16">
+						<el-col :span="18">
 							<el-input disabled placeholder="密码" v-model="dataForm.password" auto-complete="new-password"
 								style="margin-left: 6px;"></el-input>
 						</el-col>
 						<el-col :span="2" class="icon-list__tips" style="display: flex; align-items: center;">
-              <el-button type="primary" style="margin-left: 16px;" @click="editPassword()">生成</el-button>
-              <el-button type="primary" style="margin-left: 10px;" @click="copyPassword(dataForm.password)">复制</el-button>
+							<el-tooltip placement="top" effect="light" style="padding: 10px; margin-left: 5px">
+                <div slot="content">
+                  <p>密码长度8~15位，必须包含大小写字母、数字和符号</p>
+                </div>
+                <i class="el-icon-warning"></i>
+              </el-tooltip>
+              <!-- <el-button type="primary" style="margin-left: 16px;" @click="editPassword()">生成</el-button>
+              <el-button type="primary" style="margin-left: 10px;" @click="copyPassword(dataForm.password)">复制</el-button> -->
             </el-col>
 					</el-row>
 				</el-form-item>
@@ -148,19 +154,25 @@
 				:size="size" label-position="right" style="position: relative;left:16px">
 				<el-form-item label="新密码" prop="password">
 					<el-row>
-            <el-col :span="16">
-              <el-input v-model="editPwdDataForm.password" placeholder="新密码" auto-complete="off" disabled>
+            <el-col :span="18">
+              <el-input v-model="editPwdDataForm.password" placeholder="新密码" auto-complete="off" >
               </el-input>
             </el-col>
             <el-col :span="2" class="icon-list__tips" style="display: flex; align-items: center;">
-              <el-button type="primary" style="margin-left: 10px;" @click="changePassword()">生成</el-button>
-              <el-button type="primary" style="margin-left: 10px;" @click="copyPassword(editPwdDataForm.password)">复制</el-button>
+							<el-tooltip placement="top" effect="light" style="padding: 10px; margin-left: 5px">
+                <div slot="content">
+                  <p>密码长度8~15位，必须包含大小写字母、数字和符号</p>
+                </div>
+                <i class="el-icon-warning"></i>
+              </el-tooltip>
+              <!-- <el-button type="primary" style="margin-left: 10px;" @click="changePassword()">生成</el-button>
+              <el-button type="primary" style="margin-left: 10px;" @click="copyPassword(editPwdDataForm.password)">复制</el-button> -->
             </el-col>
           </el-row>
 				</el-form-item>
 				<el-form-item label="确认密码" prop="orderPassword">
 					<el-row>
-						<el-col :span="16">
+						<el-col :span="18">
 							<el-input v-model="editPwdDataForm.orderPassword" placeholder="确认密码" auto-complete="off"></el-input>
 						</el-col>
 					</el-row>

@@ -24,7 +24,7 @@
         style="text-align:left;position: relative;left:14px">
         <el-form-item label="原密码" prop="password">
           <el-row>
-            <el-col :span="16">
+            <el-col :span="18">
               <el-input v-model="param.password" placeholder="原密码" type="password" auto-complete="off" ></el-input>
             </el-col>
             <el-col :span="1" class="icon-list__tips">
@@ -33,24 +33,24 @@
         </el-form-item>
         <el-form-item label="新密码" prop="newPassword">
           <el-row>
-            <el-col :span="16">
-              <el-input v-model="param.newPassword" placeholder="新密码"  auto-complete="off" disabled></el-input>
+            <el-col :span="18">
+              <el-input v-model="param.newPassword" placeholder="新密码"  auto-complete="off" ></el-input>
             </el-col>
             <el-col :span="2" class="icon-list__tips" style="display: flex; align-items: center;">
-              <el-button type="primary" style="margin-left: 10px;" @click="generatePassword()">生成</el-button>
-              <el-button type="primary" style="margin-left: 10px;" @click="copyPassword">复制</el-button>
-              <!-- <el-tooltip placement="top" effect="light" style="padding: 10px; margin-left: 5px">
+              <!-- <el-button type="primary" style="margin-left: 10px;" @click="generatePassword()">生成</el-button>
+              <el-button type="primary" style="margin-left: 10px;" @click="copyPassword">复制</el-button> -->
+              <el-tooltip placement="top" effect="light" style="padding: 10px; margin-left: 5px">
                 <div slot="content">
                   <p>密码长度8~15位，必须包含大小写字母、数字和符号</p>
                 </div>
                 <i class="el-icon-warning"></i>
-              </el-tooltip> -->
+              </el-tooltip>
             </el-col>
           </el-row>
         </el-form-item>
         <el-form-item label="确认密码" prop="confirmPassword">
           <el-row>
-            <el-col :span="16">
+            <el-col :span="18">
               <el-input v-model="param.confirmPassword" placeholder="确认密码"  auto-complete="off" ></el-input>
             </el-col>
             <el-col :span="1" class="icon-list__tips">
@@ -78,15 +78,15 @@
         <el-form-item label="手机" prop="mobile">
           <el-input v-model="userInfo.mobile" placeholder="手机" auto-complete="off" class="inputItem"></el-input>
         </el-form-item>
-        <el-form-item label="显示" >
+        <!-- <el-form-item label="显示" >
           <el-radio v-model="displayControl" label="whole" style="margin-left: 8px;">全显</el-radio>
           <el-radio v-model="displayControl" label="half">半显</el-radio>
-        </el-form-item>
-        <el-form-item label="角色" prop="name">
+        </el-form-item> -->
+        <!-- <el-form-item label="角色" prop="name">
           <div class="inputItem" style="display: flex; row-gap: 10px; column-gap: 10px;flex-wrap: wrap;">
             <el-tag v-for="(item, index) in rolesList" :key="index">{{item}}</el-tag>
           </div>
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
       <div class="footItem">
         <el-button :size="size" type="primary" @click.native="editPersonaCenterVisible = false" >{{$t('action.cancel')}}</el-button>

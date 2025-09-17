@@ -31,7 +31,7 @@
       <el-form-item label="方法路径">
         <el-input v-model="filters.method" placeholder="方法路径" clearable></el-input>
       </el-form-item>
-      <el-form-item label="方法名">
+      <!-- <el-form-item label="方法名">
         <el-select
           v-model="filters.methodName"
           placeholder="方法名"
@@ -48,7 +48,7 @@
           >
           </el-option>
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="操作结果">
         <el-select
           v-model="filters.result"
@@ -132,9 +132,9 @@ export default {
         result: null,
 				name: '',
         method: null,
-        time: 500,
+        time: null,
         methodName: null,
-        userType: 2,
+        userType: null,
         type: null,
         date:  [
           format(new Date(new Date().setMinutes(0)).setSeconds(0) - 60 * 60 * 1000),
@@ -146,13 +146,13 @@ export default {
 				{prop:"userName", label:"用户名", minWidth:100, formatter: this.formateUser},
 				// {prop:"operation", label:"操作", minWidth:120},
 				{prop:"method", label:"方法路径", minWidth:180},
-        {prop:"", label:"方法名", minWidth:180, formatter: this.formateMethod},
+        // {prop:"", label:"方法名", minWidth:180, formatter: this.formateMethod},
 				{prop:"params", label:"参数", minWidth:220},
 				{prop:"ip", label:"IP", minWidth:120},
 				{prop:"time", label:"耗时", minWidth:80},
         {prop:"result", label:"操作结果", minWidth:80, formatter: this.formateResult},
         {prop:"message", label:"异常日志", minWidth:100},
-				{prop:"createBy", label:"创建人", minWidth:100, formatter: this.formateCreateBy},
+				{prop:"createBy", label:"创建人", minWidth:100},
 				{prop:"createTime", label:"创建时间", minWidth:140, formatter:this.dateFormat}
 				// {prop:"lastUpdateBy", label:"更新人", minWidth:100},
 				// {prop:"lastUpdateTime", label:"更新时间", minWidth:120, formatter:this.dateFormat}

@@ -6,7 +6,9 @@
 
 // 后台管理系统服务器地址
 
-export const baseUrl = 'http://192.168.1.160:9999/code' //内网测试地址
+// export const baseUrl = 'http://192.168.1.160:9999/code' //内网测试地址
+export const baseUrl = 'http://192.168.1.43:9999/code' //内网测试地址
+
 
 
 export const mainNavMain = [

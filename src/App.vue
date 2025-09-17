@@ -283,14 +283,14 @@ header {
   text-align: left;
   padding-left: 8px;
   box-sizing: border-box;
-  position: absolute;
+  // position: absolute;
   z-index: 1000;
   width: 900px;
   border: 1px solid #E6E8EB;
   box-shadow: 0px 4px 8px 0px rgba(161,161,161,0.2);
 }
 header .el-form {
-  height: 46px;
+  // height: 46px;
   /* 由于form使用的是inline-block 所以元素之间默认有间距 父元素设置font-size为
       0可以去掉间隙*/
   font-size: 0px;
@@ -336,7 +336,7 @@ header .el-form-item__label {
 }
 /* table */
 .page-table {
-  top: 108px;
+  // top: 108px;
 }
 /* 底部分页栏 */
 .bottom-bar {
@@ -346,7 +346,7 @@ header .el-form-item__label {
   position: relative;
 }
 .page-bottom-bar {
-  top: 105px;
+  // top: 105px;
 }
 .el-pagination {
   display: contents;

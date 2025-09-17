@@ -21,9 +21,9 @@ export default {
   },
   created() {
     var user = localStorage.getItem("centerUserInfo");
-    if (user) {
-      this.setWatermark(JSON.parse(user).name)
-    }
+    // if (user) {
+    //   this.setWatermark(JSON.parse(user).name)
+    // }
 
   },
   methods: {

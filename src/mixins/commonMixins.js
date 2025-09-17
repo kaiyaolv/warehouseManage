@@ -1,7 +1,24 @@
 export const mixin  =  {
+	data() {
+		return {
+			tableHeight: 0, // 响应式的表格高度
+			resizeHandler: null // 存储resize事件处理器
+		}
+	},
+	mounted() {
+		// 初始化表格高度
+		this.updateTableHeight();
+		// 添加窗口大小变化监听
+		this.addResizeListener();
+	},
+	beforeDestroy() {
+		// 移除窗口大小变化监听
+		this.removeResizeListener();
+	},
 	methods:{
     // 是否展开通用方法
     lengthOverFlow(id) {
+      return false;
       try{
         const div = document.querySelector(`#${id}`);
         const children = div.querySelectorAll('.el-form-item');
@@ -35,20 +52,92 @@ export const mixin  =  {
         return false
       }
     },
+    // 更新表格高度（响应式）
+    updateTableHeight() {
+      this.$nextTick(() => {
+        const operationHeight = this.getOperationHeight();
+        const height = this.calculateTableHeight(operationHeight);
+        this.tableHeight = height;
+      });
+    },
+    
+    // 获取操作栏高度
+    getOperationHeight() {
+      try {
+        const headerElement = document.getElementsByTagName('header')[0];
+        return headerElement ? headerElement.offsetHeight : 98;
+      } catch (e) {
+        return 98; // 默认值
+      }
+    },
+    
+    // 计算表格高度
+    calculateTableHeight(operationHeight = 98) {
+      return (window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight) - 50 - 41 - 37 - operationHeight - 8 - 42;
+    },
+    
+    // 添加窗口大小变化监听
+    addResizeListener() {
+      // 创建防抖函数
+      let timeout;
+      const debouncedUpdate = () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          this.updateTableHeight();
+        }, 100);
+      };
+      
+      this.resizeHandler = debouncedUpdate;
+      window.addEventListener('resize', this.resizeHandler);
+    },
+    
+    // 移除窗口大小变化监听
+    removeResizeListener() {
+      if (this.resizeHandler) {
+        window.removeEventListener('resize', this.resizeHandler);
+        this.resizeHandler = null;
+      }
+    },
+
     // table的固定高度
     //   计算当前表格的高度
-    getTableHeight() {
+    getTableHeight(callback) {
       // 50为顶部栏 41为菜单栏 37为路由标签 98为操作栏 8 为 操作栏和列表距离 42为底部菜单
       let width =
         window.innerWidth ||
         document.documentElement.clientWidth ||
         document.body.clientWidth;
-      let height;
-      height =
-        (window.innerHeight ||
+      
+      // 如果提供了回调函数，使用异步方式
+      if (callback && typeof callback === 'function') {
+        this.$nextTick(() => {
+          const operationWidth = document.getElementsByTagName('header')[0].offsetHeight;
+          const height =
+            (window.innerHeight ||
+              document.documentElement.clientHeight ||
+              document.body.clientHeight) - 50 - 41 - 37 - operationWidth - 8 - 42;
+          callback(height);
+        });
+      } else {
+        // 同步方式，但可能不准确
+        let operationHeight = 98; // 默认值
+        try {
+          const headerElement = document.getElementsByTagName('header')[0];
+          if (headerElement) {
+            operationHeight = headerElement.offsetHeight;
+          }
+        } catch (e) {
+          // 使用默认值
+        }
+        
+        const height = (window.innerHeight ||
           document.documentElement.clientHeight ||
-          document.body.clientHeight) - 50 - 41 - 37 - 98 - 8 - 42;
-      return height;
+          document.body.clientHeight) - 50 - 41 - 37 - operationHeight - 8 - 42;
+        
+        return height;
+      }
     },
     getTableHeightIframe() {
       // 50为顶部栏 41为菜单栏 37为路由标签 98为操作栏 8 为 操作栏和列表距离 42为底部菜单

@@ -1,6 +1,6 @@
 # ltprivate-center-new-ui
 
-隐私一体化（新）
+仓库管理系统
 
 ## Getting started
 

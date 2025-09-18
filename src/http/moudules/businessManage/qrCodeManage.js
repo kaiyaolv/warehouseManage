@@ -45,3 +45,12 @@ import axios from '../../axios'
       params
     })
   }
+  // 模板下载 /qrCode/getQrTemplate
+  export const getQrTemplate = (params) => {
+    return axios({
+      url: '/qrCode/getQrTemplate',
+      method: 'get',
+      responseType: 'blob',
+      params
+    })
+  }

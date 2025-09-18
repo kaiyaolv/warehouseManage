@@ -285,6 +285,7 @@
                   </template>
                 </el-table-column>
                 <el-table-column prop="uniqueCode" label="溯源码" header-align="center" align="center"></el-table-column>
+                <el-table-column prop="productName" label="产品名称" header-align="center" align="center" width="300"></el-table-column>
                 <el-table-column label="操作" width="80" header-align="center" align="center">
                   <template slot-scope="scope">
                     <el-button type="primary" @click="handlePutDelete(scope.row)" :size="size">删除</el-button>

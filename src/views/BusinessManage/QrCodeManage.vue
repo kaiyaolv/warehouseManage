@@ -160,15 +160,15 @@
             </el-form-item>
           </el-col>
         </el-col>
-        <!-- <el-col :span='24' style="height:25px">
+        <el-col :span='24' style="height:25px;margin-bottom: 10px">
           <el-form-item label="数据模板" prop="phoneImport">
             <div id="" style="text-align:left">
-              <span id="" class="modelDown" @click="modelDown('model')">
+              <span id="" class="modelDown" @click="modelDown()">
                 模板下载
               </span>
             </div>
           </el-form-item>
-        </el-col> -->
+        </el-col>
       </el-form>
       <!-- </div> -->
       <div class="	footItem">
@@ -403,10 +403,38 @@ export default {
         }
       });
     },
+    // 模板下载
+    modelDown() {
+      let fileName = `溯源码文件模板${format(new Date())}.xlsx`;
+      this.$api.qrCodeManage.getQrTemplate().then((res) => {
+        let data = res;
+        if (!data) {
+          return;
+        }
+        let url = window.URL.createObjectURL(new Blob([data]));
+        let a = document.createElement("a");
+        a.style.display = "none";
+        a.href = url;
+        a.setAttribute("download", fileName);
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      });
+    },
   },
 
   created() {
     this.findPage();
   },
 };
+
 </script>
+
+<style lang="scss" scoped>
+.modelDown {
+  color: rgb(101, 48, 150);
+  border-bottom: 1px solid rgb(101, 48, 150);
+  cursor: pointer;
+}
+</style>

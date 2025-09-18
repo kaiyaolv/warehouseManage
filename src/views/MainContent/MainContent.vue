@@ -48,17 +48,17 @@
           <el-row>
             <el-col :span="16">
               <el-input v-model="param.newPassword" placeholder="新密码" auto-complete="off" 
-                disabled></el-input>
+                ></el-input>
             </el-col>
             <el-col :span="2" class="icon-list__tips" style="display: flex; align-items: center;">
-              <el-button type="primary" style="margin-left: 10px;" @click="generatePassword()">生成</el-button>
-              <el-button type="primary" style="margin-left: 10px;" @click="copyPassword">复制</el-button>
-              <!-- <el-tooltip placement="top" effect="light" style="padding: 10px; margin-left: 5px">
+              <!-- <el-button type="primary" style="margin-left: 10px;" @click="generatePassword()">生成</el-button>
+              <el-button type="primary" style="margin-left: 10px;" @click="copyPassword">复制</el-button> -->
+              <el-tooltip placement="top" effect="light" style="padding: 10px; margin-left: 5px">
                 <div slot="content">
                   <p>密码长度8~15位，必须包含大小写字母、数字和符号</p>
                 </div>
                 <i class="el-icon-warning"></i>
-              </el-tooltip> -->
+              </el-tooltip>
             </el-col>
           </el-row>
         </el-form-item>
